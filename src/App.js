@@ -84,7 +84,7 @@ class App extends Component {
           totalValue={this.state.totalCount}
           initCountValue={this.getInitialTotalValue()}
         />
-        <main className="container">
+        <main className="container-fluid">
           <Counters
             counters={this.state.counters}
             onReset={this.handleReset}

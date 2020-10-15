@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Counter from "./counter.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
 
 class Counters extends Component {
   /*
@@ -12,52 +14,17 @@ class Counters extends Component {
       { id: 4, value: 3 }
     ]
   };
-
-
-  My own method of implementing the Increment method
-  handleIncrement = counter => {
-    const index = this.state.counters.indexOf(counter);
-    this.state.counters[index].value++;
-    this.setState(this.state.counters);
-  };
-
-
-  handleIncrement = counter => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value++;
-    this.setState({ counters });
-  };
-
-  handleDecrement = counter => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    if (counters[index].value !== 0) counters[index].value--;
-    this.setState({ counters });
-  };
-
-  handleDelete = counterId => {
-    console.log("Delete method called from child component id = " + counterId);
-    let counterArr = this.state.counters.filter(c => c.id !== counterId);
-    this.setState({ counters: counterArr });
-  };
-
-  handleReset = () => {
-    const counters = this.state.counters.map(counter => {
-      counter.value = 0;
-      return counter;
-    });
-    this.setState({ counters });
-  };
   */
 
   render() {
     return (
-      <div>
-        <button className="btn btn-primary sm m-2" onClick={this.props.onReset}>
-          Reset to Zero
+      <div className="container">
+        <button
+          style={{ marginLeft: 32 }}
+          className="btn btn-info btn-md mt-4 mb-1"
+          onClick={this.props.onReset}
+        >
+          <FontAwesomeIcon icon={faSync} /> Refresh
         </button>
 
         {this.props.counters.map((counter) => (
