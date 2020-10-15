@@ -4,18 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 
 class Counters extends Component {
-  /*
-  ** State has been lifted to parent component (App Component)
-  state = {
-    counters: [
-      { id: 1, value: 4 },
-      { id: 2, value: 7 },
-      { id: 3, value: 8 },
-      { id: 4, value: 3 }
-    ]
-  };
-  */
-
   render() {
     return (
       <div className="container">

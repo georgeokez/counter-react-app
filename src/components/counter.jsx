@@ -1,54 +1,12 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  // eslint-disable-next-line no-unused-vars
-  faTrash,
   faTrashAlt,
   faPlusCircle,
   faMinusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 class Counter extends Component {
-  /* 
-  *** State has been lifted to parent component
-  ** State if removed and handled by the parent component (Counter Component)
-  state = {
-    value: this.props.counter.value,
-    tag: []
-  };
-  */
-
-  /*
-  * The constructor
-   constructor() {
-     super();
-     this.handleIncrement = this.handleIncrement.bind(this);
-   }
-  */
-
-  /*
-  *Increment method would be handled by Top level component
-  handleIncrement = currentCount => {
-    console.log(currentCount);
-    this.setState({ value: this.state.value + 1 });
-  };
-  */
-
-  /*
-  *Decrement method would be handled by Top level component
-  handleDecrement = currentCount => {
-    console.log(currentCount);
-    if (this.state.value !== 0) this.setState({ value: this.state.value - 1 });
-  };
-  */
-
-  /*
-  * Helper Method
-  doHandleIncrement = () => {
-    this.handleIncrement({ id: this.state.value + 1 });
-  };
-  */
-
   render() {
     return (
       <div className="m-1 p-1 row">

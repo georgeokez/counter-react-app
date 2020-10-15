@@ -5,15 +5,18 @@ import Counters from "./components/counters.jsx";
 
 class App extends Component {
   // Counter Component State and mutator methods
-  state = {
-    counters: [
-      { id: 1, value: 0 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
-    ],
-    totalCount: 0,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      counters: [
+        { id: 1, value: 0 },
+        { id: 2, value: 0 },
+        { id: 3, value: 0 },
+        { id: 4, value: 0 },
+      ],
+      totalCount: 0,
+    };
+  }
 
   handleIncrement = (counter) => {
     const counters = [...this.state.counters];

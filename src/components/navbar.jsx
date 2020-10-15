@@ -2,9 +2,12 @@ import React, { Component } from "react";
 
 // NavBar Component
 class NavBar extends Component {
-  state = {
-    init: 1,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      init: 1,
+    };
+  }
 
   getCountValue = () => {
     if (this.state.init === 1) {
