@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   /* 
-  ** State if removed and handled by the parent component
+  *** State has been lifted to parent component
+  ** State if removed and handled by the parent component (Counter Component)
   state = {
     value: this.props.counter.value,
     tag: []
@@ -79,7 +80,7 @@ class Counter extends Component {
     if (this.state.tag.length >= 1) {
       return (
         <ul>
-          {this.state.tag.map(tag => (
+          {this.state.tag.map((tag) => (
             <li key={tag}>{tag}</li>
           ))}
         </ul>
