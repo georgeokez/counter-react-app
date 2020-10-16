@@ -1,101 +1,85 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import NavBar from "./components/navbar.jsx";
 import "./App.css";
 import Counters from "./components/counters.jsx";
 
-class App extends Component {
-  // Counter Component State and mutator methods
-  state = {
-    counters: [
-      { id: 1, value: 0 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
-    ],
-    totalCount: 0,
-  };
+const App = () => {
+  const counterDefaultVal = [
+    { id: 1, value: 0 },
+    { id: 2, value: 0 },
+    { id: 3, value: 0 },
+    { id: 4, value: 0 },
+  ];
 
-  handleIncrement = (counter) => {
-    const counters = [...this.state.counters];
-    let totalCount =
-      this.state.totalCount !== 0
-        ? this.state.totalCount
-        : this.getInitialTotalValue();
+  const [counters, setCounter] = useState(counterDefaultVal);
+  const [totalCount, setTotalCount] = useState(0);
+
+  const handleIncrement = (counter) => {
+    let tCount = totalCount !== 0 ? totalCount : getInitialTotalValue();
     const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
     counters[index].value++;
-    totalCount++;
-    this.setState({ counters, totalCount });
+    tCount++;
+    setCounter(counters);
+    setTotalCount(tCount);
   };
 
-  handleDecrement = (counter) => {
-    const counters = [...this.state.counters];
-    let totalCount =
-      this.state.totalCount !== 0
-        ? this.state.totalCount
-        : this.getInitialTotalValue();
+  const handleDecrement = (counter) => {
+    let tCount = totalCount !== 0 ? totalCount : getInitialTotalValue();
     const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
     if (counters[index].value !== 0) {
       counters[index].value--;
-      totalCount--;
+      tCount--;
     }
-    this.setState({ counters, totalCount });
+    setCounter(counters);
+    setTotalCount(tCount);
   };
 
-  handleDelete = (counterId) => {
+  const handleDelete = (counterId) => {
     console.log("Delete method called from child component id = " + counterId);
-    let counters = this.state.counters.filter((c) => c.id !== counterId);
-    let counter = this.state.counters.filter((c) => c.id === counterId);
-    let totalCount =
-      this.state.totalCount !== 0
-        ? this.state.totalCount
-        : this.getInitialTotalValue();
-    totalCount -= counter[0].value;
-    this.setState({ counters, totalCount });
+    let countersLocal = counters.filter((c) => c.id !== counterId);
+    let counter = counters.filter((c) => c.id === counterId);
+    let tCount = totalCount !== 0 ? totalCount : getInitialTotalValue();
+    tCount -= counter[0].value;
+    setCounter(countersLocal);
+    setTotalCount(tCount);
   };
 
-  handleReset = () => {
-    let counters = [...this.state.counters];
-    let totalCount = this.state.totalCount;
-    counters = counters.map((counter) => {
+  const handleReset = () => {
+    counters.map((counter) => {
       counter.value = 0;
       return counter;
     });
-    totalCount = 0;
-    this.setState({ counters, totalCount });
+    setCounter(counters);
+    setTotalCount(0);
   };
 
-  getInitialTotalValue = () => {
-    let counters = [...this.state.counters];
-    let totalCount = this.state.totalCount;
+  const getInitialTotalValue = () => {
+    let tCount = totalCount;
     counters.map((counter) => {
-      totalCount += counter.value;
+      tCount += counter.value;
       return counter;
     });
-    return totalCount;
+    return tCount;
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <NavBar
-          totalCounters={this.state.counters.filter((c) => c.value > 0).length}
-          totalValue={this.state.totalCount}
-          initCountValue={this.getInitialTotalValue()}
+  return (
+    <React.Fragment>
+      <NavBar
+        totalCounters={counters.filter((c) => c.value > 0).length}
+        totalValue={totalCount}
+        initCountValue={getInitialTotalValue()}
+      />
+      <main className="container-fluid">
+        <Counters
+          counters={counters}
+          onReset={handleReset}
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
+          onDelete={handleDelete}
         />
-        <main className="container-fluid">
-          <Counters
-            counters={this.state.counters}
-            onReset={this.handleReset}
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-          />
-        </main>
-      </React.Fragment>
-    );
-  }
-}
+      </main>
+    </React.Fragment>
+  );
+};
 
 export default App;
